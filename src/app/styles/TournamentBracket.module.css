@@ -1,0 +1,193 @@
+/* ---------- ROOT GRID ---------- */
+
+.bracketContainer {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 0.5fr))   /* left rounds */
+        minmax(0, 1.4fr)            /* center */
+        repeat(3, minmax(0, 0.5fr));  /* right rounds */
+    gap: 16px;
+    width: 100%;
+}
+
+/* ---------- STANDARD ROUND COLUMNS ---------- */
+
+.bracketColumn {
+    display: grid;
+    grid-auto-rows: min-content;
+    width: 100%;
+}
+
+.title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.title h3 {
+    text-align: center;
+    color: #4ade80;
+}
+
+/* ---------- CENTER ---------- */
+
+.centerBracket {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    column-gap: 16px;
+    width: 100%;
+}
+
+/* ---------- SEMIFINAL & FINAL (NORMALIZED) ---------- */
+
+.semifinal,
+.final {
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 20px;
+    width: 100%;
+}
+
+/* Headings behave the same everywhere */
+.semifinal h3,
+.final h3 {
+    text-align: center;
+}
+
+/* ---------- MATCH CARD (SINGLE SOURCE OF TRUTH) ---------- */
+
+.match {
+    width: 100%;
+    box-sizing: border-box;
+    background: #111;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+/* ---------- TEAMS ---------- */
+
+.team {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 4px;
+}
+
+.team img {
+    width: 24px;
+    height: 24px;
+}
+
+.winner {
+    font-weight: bold;
+    color: #4ade80;
+}
+
+/* ---------- META ---------- */
+
+.matchDate {
+    font-size: 11px;
+    color: #64748b;
+    text-align: center;
+    letter-spacing: 0.3px;
+}
+
+/* ---------- OPTIONAL ---------- */
+
+.addMatch {
+    text-align: center;
+    font-size: 24px;
+    color: #4ade80;
+    cursor: pointer;
+}
+
+/* ---------- ROUND OFFSETS (TREE EFFECT) (FOR TBD) ---------- */
+
+.bracketColumn {
+    row-gap: 16px; /* default for R16 */
+}
+
+/* Quarterfinals: merge 2 → 1 */
+.round8 {
+    row-gap: 125px;
+    padding-top: 60px;
+
+}
+
+/* Semifinals (Round of 4): merge 2 → 1 again */
+.round4 {
+    row-gap: 350px;
+    padding-top: 170px;
+}
+
+.semifinal {
+    row-gap: 280px;
+    padding-top: 100px;
+}
+
+.final {
+    row-gap: 100px;
+    padding-top: 280px;
+}
+
+/* ---------- ROUND OFFSETS (TREE EFFECT) (FOR TBD) ---------- */
+
+.bracketColumn {
+    row-gap: 16px; /* default for R16 */
+}
+
+/* Quarterfinals: merge 2 → 1 */
+.round8 {
+    row-gap: 160px;
+    padding-top: 90px;
+
+}
+
+/* Semifinals (Round of 4): merge 2 → 1 again */
+.round4 {
+    row-gap: 455px;
+    padding-top: 235px;
+}
+
+.semifinal {
+    padding-top: 530px;
+}
+
+.final {
+    padding-top: 250px;
+}
+
+/* ---------- MOBILE SWIPE CONTAINER ---------- */
+
+.bracketScroll {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    .bracketContainer {
+        min-width: 1100px; /* adjust to taste */
+        grid-template-columns:
+            repeat(3, 150px)
+            460px
+            repeat(3, 150px);
+        gap: 16px;
+    }
+
+    .centerBracket {
+        grid-template-columns: repeat(3, 150px);
+    }
+
+    .bracketScroll {
+        scroll-snap-type: x mandatory;
+    }
+
+    .bracketColumn,
+    .centerBracket {
+        scroll-snap-align: center;
+    }
+}
+
+
