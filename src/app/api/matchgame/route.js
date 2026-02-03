@@ -1,6 +1,17 @@
 import pool from '@/app/lib/db';
+import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+
+async function requireAdmin() {
+    const cookieStore = await cookies();
+    const role = cookieStore.get('role')?.value;
+    return role === 'admin';
+}
 
 export async function POST(req) {
+    if (!requireAdmin()) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
     const body = await req.json();
 
     const winnerId =
@@ -26,6 +37,9 @@ export async function POST(req) {
 }
 
 export async function PUT(req) {
+    if (!requireAdmin()) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
     const body = await req.json();
 
     const winnerId =
