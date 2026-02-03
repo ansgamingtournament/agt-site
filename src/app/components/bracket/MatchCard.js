@@ -1,35 +1,41 @@
 import styles from '@/app/styles/TournamentBracket.module.css';
+import { useAdmin } from '@/app/context/AdminContext';
 
 export default function MatchCard({ match, onClick }) {
+    const { isAdmin } = useAdmin();
+    const isAdd = match.id === null;
+
     return (
-        <div className={styles.match} onClick={() => onClick(match)}>
-            {match.id === null && (
-                <div className={styles.addMatch}>+</div>
+        <div
+            className={`${styles.match} ${isAdd ? styles.addMatchCard : ''}`}
+            onClick={isAdmin && onClick ? () => onClick(match) : undefined}
+        >
+            {isAdd && isAdmin && (
+                <div className={styles.addMatchOverlay}>+</div>
             )}
 
-            <TeamRow
-                team={match.team_a_name}
-                img={match.team_a_image}
-                winner={match.winner_id === match.team_a_id}
-            />
-            <TeamRow
-                team={match.team_b_name}
-                img={match.team_b_image}
-                winner={match.winner_id === match.team_b_id}
-            />
+            {!isAdd && (
+                <>
+                    <TeamRow
+                        team={match.team_a_name}
+                        img={match.team_a_image}
+                        winner={match.winner_id === match.team_a_id}
+                    />
+                    <TeamRow
+                        team={match.team_b_name}
+                        img={match.team_b_image}
+                        winner={match.winner_id === match.team_b_id}
+                    />
 
-            {match.start_date ?
-                <div className={styles.matchDate}>
-                    {formatDate(match.start_date)}
-                </div>
-             :
-                <div className={styles.matchDate}>
-                    tbd
-                </div>
-            }
+                    <div className={styles.matchDate}>
+                        {match.start_date ? formatDate(match.start_date) : 'tbd'}
+                    </div>
+                </>
+            )}
         </div>
     );
 }
+
 
 function formatDate(dateString) {
     if (!dateString) return '';
@@ -49,7 +55,7 @@ function formatDate(dateString) {
 function TeamRow({ team, img, winner }) {
     return (
         <div className={`${styles.team} ${winner ? styles.winner : ''}`}>
-            {img && <img src={img} alt={team} />}
+            {img ? <img src={img} alt={team} /> : <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/960px-Cat_November_2010-1a.jpg"} alt={"default"} />}
             <span>{team ?? 'TBD'}</span>
             <span>{winner ? winner : ''}</span>
         </div>
