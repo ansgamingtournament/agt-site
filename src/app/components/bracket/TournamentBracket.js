@@ -34,7 +34,9 @@ export default function TournamentBracket({tournamentID, matches, teams }) {
                         <div className={styles.title}>
                             <h3>Final</h3>
                         </div>
-                        {b.final && <MatchCard match={b.final} onClick={setActiveMatch} />}
+                        <div className={`${styles.bracketColumn} ${styles.final}`}>
+                            {b.final && <MatchCard match={b.final} onClick={setActiveMatch} />}
+                        </div>
                     </div>
                 </div>
             </div>

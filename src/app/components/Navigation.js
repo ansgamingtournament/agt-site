@@ -46,15 +46,15 @@ export default function Navigation() {
                     <span />
                 </button>
             </div>
-
-            {/* Mobile menu */}
-            <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
-                <NavLink href="/" closeMenu={closeMenu}>Home</NavLink>
-                <NavLink href="/tournaments" closeMenu={closeMenu}>Tournaments</NavLink>
-                {isAdmin && (
-                    <NavLink href="/admin" closeMenu={closeMenu}>Admin</NavLink>
-                )}
-            </div>
+            {menuOpen && (
+                <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
+                    <NavLink href="/" closeMenu={closeMenu}>Home</NavLink>
+                    <NavLink href="/tournaments" closeMenu={closeMenu}>Tournaments</NavLink>
+                    {isAdmin && (
+                        <NavLink href="/admin" closeMenu={closeMenu}>Admin</NavLink>
+                    )}
+                </div>
+            )}
         </nav>
     );
 }
