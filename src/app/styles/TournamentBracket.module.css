@@ -3,12 +3,11 @@
 .bracketContainer {
     display: grid;
     grid-template-columns:
-        repeat(3, minmax(0, 0.5fr))   /* left rounds */
-        minmax(0, 1.4fr)            /* center */
-        repeat(3, minmax(0, 0.5fr));  /* right rounds */
+        repeat(4, minmax(0, 5fr)); /* left rounds *;  /* right rounds */
     gap: 16px;
     width: 100%;
 }
+
 
 /* ---------- STANDARD ROUND COLUMNS ---------- */
 
@@ -35,22 +34,6 @@
     grid-template-columns: 2fr 2fr 2fr;
     column-gap: 16px;
     width: 100%;
-}
-
-/* ---------- SEMIFINAL & FINAL (NORMALIZED) ---------- */
-
-.semifinal,
-.final {
-    display: grid;
-    grid-auto-rows: min-content;
-    row-gap: 20px;
-    width: 100%;
-}
-
-/* Headings behave the same everywhere */
-.semifinal h3,
-.final h3 {
-    text-align: center;
 }
 
 /* ---------- MATCH CARD (SINGLE SOURCE OF TRUTH) ---------- */
@@ -120,16 +103,6 @@
     padding-top: 170px;
 }
 
-.semifinal {
-    row-gap: 280px;
-    padding-top: 100px;
-}
-
-.final {
-    row-gap: 100px;
-    padding-top: 280px;
-}
-
 /* ---------- ROUND OFFSETS (TREE EFFECT) (FOR TBD) ---------- */
 
 .bracketColumn {
@@ -149,12 +122,8 @@
     padding-top: 235px;
 }
 
-.semifinal {
-    padding-top: 530px;
-}
-
 .final {
-    padding-top: 250px;
+    padding-top: 530px;
 }
 
 /* ---------- MOBILE SWIPE CONTAINER ---------- */
@@ -170,7 +139,7 @@
     .bracketContainer {
         min-width: 1100px; /* adjust to taste */
         grid-template-columns:
-            repeat(3, 150px)
+            repeat(4, 300px)
             460px
             repeat(3, 150px);
         gap: 16px;

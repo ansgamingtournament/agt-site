@@ -62,7 +62,7 @@ function formatDate(dateString) {
 function TeamRow({ team, img, winner }) {
     return (
         <div className={`${styles.team} ${winner ? styles.winner : ''}`}>
-            {img ? <img src={img} alt={team} /> : <img src={img} alt={"default"} />}
+            {img ? <img src={img} alt={team} /> : <img src={"/logo.png"} alt={"default"} />}
             <span>{team ?? 'TBD'}</span>
             <span>{winner ? winner : ''}</span>
         </div>

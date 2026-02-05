@@ -66,3 +66,64 @@
 .link:hover {
     color: #4ade80;
 }
+
+/* ========================= */
+/* HAMBURGER BUTTON */
+/* ========================= */
+
+.menuBtn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menuBtn span {
+    width: 26px;
+    height: 3px;
+    background: #4ade80;
+    border-radius: 2px;
+}
+
+/* ========================= */
+/* MOBILE MENU */
+/* ========================= */
+
+.mobileMenu {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 0 24px;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid rgba(74, 222, 128, 0.15);
+    transition: max-height 0.35s ease, padding 0.3s ease;
+}
+
+.mobileMenu.open {
+    max-height: 300px;
+    padding: 18px 24px;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+    .links {
+        display: none;
+    }
+
+    .menuBtn {
+        display: flex;
+    }
+
+    .mobileMenu .link {
+        font-size: 18px;
+    }
+}
+
