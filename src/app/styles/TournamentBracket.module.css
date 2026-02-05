@@ -166,14 +166,14 @@
     cursor: pointer;
     background: #0b0b0b;
     border: 2px dashed #4ade80;
-    min-height: 130px;
+    min-height: 132.5px;
 }
 
 .addMatchCard {
     position: relative;
     cursor: pointer;
     background: #0b0b0b;
-    min-height: 130px;
+    min-height: 132.5px;
 }
 
 .addMatchOverlay {
