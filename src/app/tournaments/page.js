@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import styles from '@/app/styles/TournamentList.module.css';
 import TournamentCard from '@/app/components/TournamentCard';
 
-const TABS = ['CURRENT', 'FUTURE', 'OVER'];
+const TABS = [
+    { key: 'CURRENT', label: 'Live' },
+    { key: 'FUTURE', label: 'Upcoming' },
+    { key: 'OVER', label: 'Finished' },
+];
 
 export default function TournamentsPage() {
     const [tournaments, setTournaments] = useState([]);
@@ -19,34 +23,46 @@ export default function TournamentsPage() {
     const filtered = tournaments.filter(t => t.status === activeTab);
 
     return (
-        <div className={styles.wrapper}>
-            <h1>Tournaments</h1>
+        <>
+            {/* HERO */}
+            <section className={styles.hero}>
+                <div className={styles.heroContent}>
+                    <h1>Tournaments</h1>
+                    <p>
+                        Explore live competitions, upcoming events, and completed tournaments
+                        across multiple games.
+                    </p>
+                </div>
+            </section>
 
-            {/* Tabs */}
-            <div className={styles.tabs}>
-                {TABS.map(tab => (
-                    <button
-                        key={tab}
-                        className={`${styles.tab} ${activeTab === tab ? styles.active : ''}`}
-                        onClick={() => setActiveTab(tab)}
-                    >
-                        {tab === 'OVER' && 'Over Tournaments'}
-                        {tab === 'CURRENT' && 'Current Tournaments'}
-                        {tab === 'FUTURE' && 'Future Tournaments'}
-                    </button>
-                ))}
+            {/* CONTENT */}
+            <div className={styles.page}>
+                {/* TABS */}
+                <div className={styles.tabs}>
+                    {TABS.map(tab => (
+                        <button
+                            key={tab.key}
+                            onClick={() => setActiveTab(tab.key)}
+                            className={`${styles.tab} ${
+                                activeTab === tab.key ? styles.active : ''
+                            }`}
+                        >
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+
+                {/* GRID */}
+                <div className={styles.grid}>
+                    {filtered.length === 0 && (
+                        <p className={styles.empty}>No tournaments found.</p>
+                    )}
+
+                    {filtered.map(t => (
+                        <TournamentCard key={t.id} tournament={t} />
+                    ))}
+                </div>
             </div>
-
-            {/* Grid */}
-            <div className={styles.grid}>
-                {filtered.map(t => (
-                    <TournamentCard key={t.id} tournament={t} />
-                ))}
-
-                {filtered.length === 0 && (
-                    <p className={styles.empty}>No tournaments found.</p>
-                )}
-            </div>
-        </div>
+        </>
     );
 }

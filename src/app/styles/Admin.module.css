@@ -1,0 +1,277 @@
+/* =========================
+   ADMIN BASE
+========================= */
+.admin-page {
+    min-height: 100vh;
+    padding: 40px;
+    background: radial-gradient(
+            1000px circle at top left,
+            rgba(34, 138, 73, 0.15),
+            transparent 40%
+    ),
+    #0a0a0a;
+    color: #e5e7eb;
+    font-family: system-ui, sans-serif;
+}
+
+.admin-page input {
+    width: 100%;
+}
+
+.admin-page h1,
+.admin-page h2,
+.admin-page h3 {
+    color: #4ade80;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   SIDEBAR NAVIGATION
+========================= */
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-nav a {
+    display: block;
+    width: 100%;
+
+    color: #4ade80;
+    font-weight: 700;
+    text-decoration: none;
+
+    padding: 12px 14px;
+    border-radius: 12px;
+
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    background: rgba(74, 222, 128, 0.05);
+
+    transition: all 0.2s ease;
+}
+
+.admin-nav a:hover {
+    background: rgba(74, 222, 128, 0.18);
+    box-shadow: 0 0 18px rgba(74, 222, 128, 0.35);
+}
+
+
+/* =========================
+   TABLES
+========================= */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background: linear-gradient(180deg, #0f0f0f, #0a0a0a);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.admin-table thead {
+    background: rgba(34, 138, 73, 0.15);
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 16px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #4ade80;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 14px;
+    color: #d1d5db;
+}
+
+.admin-table tr:hover td {
+    background: rgba(74, 222, 128, 0.05);
+}
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+.admin-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.admin-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-edit {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+}
+
+.btn-edit:hover {
+    background: #4ade80;
+    color: black;
+}
+
+.btn-delete {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+}
+
+.btn-delete:hover {
+    background: #ef4444;
+    color: white;
+}
+
+
+
+/* =========================
+   FORMS
+========================= */
+.admin-form {
+    max-width: 920px;
+    padding: 22px 26px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #0f0f0f, #0a0a0a);
+    border-radius: 20px;
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    margin-bottom: 40px;
+
+    /* NEW */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 22px;
+    align-items: end;
+}
+
+/* label + input grouping */
+.admin-form label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #9ca3af;
+}
+
+/* wrap each field */
+.admin-form .field {
+    display: flex;
+    flex-direction: column;
+}
+
+/* inputs */
+.admin-form input,
+.admin-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0a0a0a;
+    color: white;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-form input:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: #4ade80;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
+}
+
+/* SAVE BUTTON — spans full width */
+.btn-save {
+    grid-column: span 2;
+
+    width: 100%;
+    padding: 12px;
+    border-radius: 999px;
+    background: #4ade80;
+    color: black;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-save:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(74, 222, 128, 0.5);
+}
+
+
+/* =========================
+   SEARCH INPUT
+========================= */
+.admin-search {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #0a0a0a;
+    color: white;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-search:focus {
+    outline: none;
+    border-color: #4ade80;
+    box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.25);
+}
+
+/* =========================
+   ADMIN SHELL LAYOUT
+========================= */
+
+.admin-shell {
+    display: flex;
+    min-height: 100vh;
+    background: #0a0a0a;
+    color: #e5e7eb;
+}
+
+/* sidebar */
+
+.admin-sidebar {
+    width: 240px;
+    padding: 30px 20px;
+    border-right: 1px solid rgba(74, 222, 128, 0.15);
+    background: linear-gradient(
+            180deg,
+            #0f0f0f,
+            #080808
+    );
+}
+
+.admin-sidebar h1 {
+    color: #4ade80;
+    margin-bottom: 30px;
+}
+
+/* content area */
+
+.admin-content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+}

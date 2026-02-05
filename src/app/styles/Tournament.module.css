@@ -1,0 +1,317 @@
+/* Main container */
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: var(--font-geist-sans);
+}
+
+/* Hero section */
+.hero {
+    background: linear-gradient(135deg, #00458f 0%, #003366 100%);
+    border-radius: 12px;
+    padding: 40px;
+    margin-bottom: 40px;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.statLabel {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.tab {
+    padding: 10px 24px;
+    border: none;
+    background: none;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #f5f5f5;
+    color: #00458f;
+}
+
+.active {
+    background-color: #00458f;
+    color: white;
+}
+
+.active:hover {
+    background-color: #003366;
+    color: white;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Tournament card */
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 69, 143, 0.12);
+}
+
+.cardHeader {
+    padding: 20px;
+    background: linear-gradient(to right, #00458f, #0066cc);
+    color: white;
+    position: relative;
+}
+
+.gameInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.gameImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background-color: white;
+    padding: 4px;
+}
+
+.gameName {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.statusBadge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.statusCurrent {
+    background-color: #00cc66;
+    color: white;
+}
+
+.statusFuture {
+    background-color: #ff9900;
+    color: white;
+}
+
+.statusOver {
+    background-color: #666;
+    color: white;
+}
+
+.cardBody {
+    padding: 20px;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dateItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.dateLabel {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.dateValue {
+    font-weight: 600;
+    color: #333;
+}
+
+.prizePool {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #00458f;
+    margin-bottom: 15px;
+}
+
+.teams {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.teamLabel {
+    color: #666;
+}
+
+.teamValue {
+    font-weight: 600;
+    color: #333;
+}
+
+.winner {
+    background-color: #f8f9ff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #00458f;
+    margin-top: 15px;
+}
+
+.winnerLabel {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.winnerName {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #00458f;
+}
+
+.cardFooter {
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.viewButton {
+    padding: 8px 20px;
+    background-color: #00458f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.viewButton:hover {
+    background-color: #003366;
+}
+
+.registerButton {
+    padding: 8px 20px;
+    background-color: #00cc66;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registerButton:hover {
+    background-color: #00b359;
+}
+
+.registerButton:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab {
+        width: 100%;
+    }
+}

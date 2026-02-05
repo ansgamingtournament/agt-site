@@ -7,7 +7,14 @@ export default function MatchCard({ match, onClick }) {
 
     return (
         <div
-            className={`${styles.match} ${isAdd ? styles.addMatchCard : ''}`}
+            className={[
+                styles.match,
+                isAdd && styles.addMatchCard,
+                isAdd && isAdmin && styles.addMatchCardAdmin
+            ]
+                .filter(Boolean)
+                .join(' ')
+            }
             onClick={isAdmin && onClick ? () => onClick(match) : undefined}
         >
             {isAdd && isAdmin && (
@@ -55,7 +62,7 @@ function formatDate(dateString) {
 function TeamRow({ team, img, winner }) {
     return (
         <div className={`${styles.team} ${winner ? styles.winner : ''}`}>
-            {img ? <img src={img} alt={team} /> : <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/960px-Cat_November_2010-1a.jpg"} alt={"default"} />}
+            {img ? <img src={img} alt={team} /> : <img src={img} alt={"default"} />}
             <span>{team ?? 'TBD'}</span>
             <span>{winner ? winner : ''}</span>
         </div>
