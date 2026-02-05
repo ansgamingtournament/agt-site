@@ -118,8 +118,8 @@
 
 /* Semifinals (Round of 4): merge 2 → 1 again */
 .round4 {
-    row-gap: 455px;
-    padding-top: 235px;
+    row-gap: 450px;
+    padding-top: 224px;
 }
 
 .final {
@@ -244,7 +244,7 @@
 }
 
 .round4 .matchWrapper::before {
-    height: 590px;
+    height: 582px;
 }
 
 .round8 .matchWrapper:nth-child(odd) .match::after {
