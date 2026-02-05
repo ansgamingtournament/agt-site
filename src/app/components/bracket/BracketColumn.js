@@ -8,13 +8,19 @@ export default function BracketColumn({ title, matches, onMatchClick, className 
                 <h3>{title}</h3>
             </div>
             <div className={`${styles.bracketColumn} ${className || ""}`}>
-                {matches.map(match => (
-                    <MatchCard
+                {matches.map((match, index) => (
+                    <div
                         key={`${match.side}-${match.round_number}-${match.bracket_position}`}
-                        match={match}
-                        onClick={onMatchClick}
-                    />
+                        className={styles.matchWrapper}
+                        data-index={index}
+                    >
+                        <MatchCard
+                            match={match}
+                            onClick={onMatchClick}
+                        />
+                    </div>
                 ))}
+
             </div>
         </div>
     );

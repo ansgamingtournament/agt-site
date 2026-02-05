@@ -4,8 +4,9 @@
     display: grid;
     grid-template-columns:
         repeat(4, minmax(0, 5fr)); /* left rounds *;  /* right rounds */
-    gap: 16px;
+    gap: 52px;
     width: 100%;
+    margin-left: 50px;
 }
 
 /* ---------- STANDARD ROUND COLUMNS ---------- */
@@ -141,7 +142,7 @@
             repeat(4, 300px)
             460px
             repeat(3, 150px);
-        gap: 16px;
+
     }
 
     .centerBracket {
@@ -196,4 +197,60 @@
 .addMatchCard:hover {
     background: #0f172a;
     box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
+}
+
+.matchWrapper {
+    position: relative;
+}
+
+.matchWrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -16px;
+    width: 16px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.matchWrapper:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    width: 2px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.matchWrapper:nth-child(odd) .match::after {
+    content: '';
+    position: absolute;
+    right: -52px;        /* further than card line */
+    top: calc(50% + 75px); /* half of vertical line height */
+    width: 36px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+
+.final .matchWrapper::before,
+.final .matchWrapper::after {
+    display: none;
+}
+
+.round8 .matchWrapper::before {
+    height: 293px;
+}
+
+.round4 .matchWrapper::before {
+    height: 590px;
+}
+
+.round8 .matchWrapper:nth-child(odd) .match::after {
+    top: calc(50% + 146px);
+}
+
+.round4 .matchWrapper:nth-child(odd) .match::after {
+    top: calc(50% + 295px);
 }
