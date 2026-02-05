@@ -8,20 +8,11 @@ export function groupMatches(matches) {
     const leftR4 = matches.filter(m => m.round_number === 3 && m.bracket_position <= 2);
     const rightR4 = matches.filter(m => m.round_number === 3 && m.bracket_position > 2);
 
-    const leftSemi = matches.filter(
-        m => m.round_number === 4 && m.bracket_position === 1
-    );
-
-    const rightSemi = matches.filter(
-        m => m.round_number === 4 && m.bracket_position === 2
-    );
-
     return {
         left: {
             r16: fillRoundSlots(leftR16, 8, 'left', 1),
             r8: fillRoundSlots(leftR8, 4, 'left', 2),
             r4: fillRoundSlots(leftR4, 2, 'left', 3),
-            semifinal: fillRoundSlots(leftSemi, 1, 'left', 4),
         },
         right: {
             r16: fillRoundSlots(
@@ -41,12 +32,6 @@ export function groupMatches(matches) {
                 2,
                 'right',
                 3
-            ),
-            semifinal: fillRoundSlots(
-                rightSemi.map(m => ({ ...m, bracket_position: 1 })),
-                1,
-                'right',
-                4
             ),
         },
         final: matches.find(m => m.round_number === 5) ?? {
