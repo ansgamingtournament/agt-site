@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 1000;
 }
 
 .inner img {
@@ -38,6 +39,7 @@
 .link {
     position: relative;
     font-weight: 600;
+    text-align: right;
     color: #bbf7d0;
     text-decoration: none;
     padding: 4px 0;
@@ -81,6 +83,8 @@
 }
 
 .menuBtn span {
+    z-index: 1000;
+    display: block;
     width: 26px;
     height: 3px;
     background: #4ade80;
@@ -92,21 +96,43 @@
 /* ========================= */
 
 .mobileMenu {
-    max-height: 0;
-    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    width: 280px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    padding: 0 24px;
-    background: rgba(10, 10, 10, 0.95);
+    gap: 24px;
+    padding: 24px;
+
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(12px);
+    border-left: 1px solid rgba(74, 222, 128, 0.15);
     border-bottom: 1px solid rgba(74, 222, 128, 0.15);
-    transition: max-height 0.35s ease, padding 0.3s ease;
+
+    transform: translateX(100%);
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+
+    transition:
+            transform 0.35s ease,
+            opacity 0.2s ease,
+            height 0s linear 0.35s;
 }
 
+
 .mobileMenu.open {
-    max-height: 300px;
-    padding: 18px 24px;
+    transform: translateX(0);
+    opacity: 1;
+    height: auto;
+
+    transition:
+            transform 0.35s ease,
+            opacity 0.2s ease;
 }
+
 
 /* ========================= */
 /* RESPONSIVE */
@@ -124,6 +150,12 @@
 
     .mobileMenu .link {
         font-size: 18px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobileMenu {
+        display: none;
     }
 }
 

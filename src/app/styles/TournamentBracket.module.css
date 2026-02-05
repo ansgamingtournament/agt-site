@@ -8,7 +8,6 @@
     width: 100%;
 }
 
-
 /* ---------- STANDARD ROUND COLUMNS ---------- */
 
 .bracketColumn {
@@ -112,7 +111,7 @@
 /* Quarterfinals: merge 2 → 1 */
 .round8 {
     row-gap: 160px;
-    padding-top: 90px;
+    padding-top: 76px;
 
 }
 
@@ -123,7 +122,7 @@
 }
 
 .final {
-    padding-top: 530px;
+    padding-top: 260px;
 }
 
 /* ---------- MOBILE SWIPE CONTAINER ---------- */
@@ -189,7 +188,6 @@
     transition: all 0.2s ease;
 }
 
-
 .addMatchCard:hover .addMatchOverlay {
     transform: scale(1.1);
     opacity: 1;
@@ -199,5 +197,3 @@
     background: #0f172a;
     box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.3);
 }
-
-
