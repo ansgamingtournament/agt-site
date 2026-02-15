@@ -45,6 +45,8 @@ export function groupMatches(matches) {
             team_b_name: null,
             winner_id: null,
             start_date: null,
+            team_a_result: 0,
+            team_b_result: 0,
         }
     };
 }
@@ -70,9 +72,102 @@ function fillRoundSlots(existing, totalSlots, side, round_number) {
                 team_b_name: null,
                 winner_id: null,
                 start_date: null,
+                team_a_result: 0,
+                team_b_result: 0,
             });
         }
     }
 
     return slots;
+}
+
+export function groupDoubleEliminationMatches(matches) {
+
+    // normalize numeric fields (important if backend sends strings)
+    const normalized = matches.map(m => ({
+        ...m,
+        round_number: Number(m.round_number),
+        bracket_position: Number(m.bracket_position),
+    }));
+
+    // ---------- UPPER BRACKET ----------
+
+    const upper = {
+        r1: fillRoundSlots(
+            normalized.filter(m => m.round_number === 1),
+            4,
+            "upper",
+            1
+        ),
+
+        r2: fillRoundSlots(
+            normalized.filter(m => m.round_number === 2),
+            2,
+            "upper",
+            2
+        ),
+
+        final: fillRoundSlots(
+            normalized.filter(m => m.round_number === 3),
+            1,
+            "upper",
+            3
+        ),
+    };
+
+    // ---------- LOWER BRACKET ----------
+
+    const lower = {
+        r1: fillRoundSlots(
+            normalized.filter(m => m.round_number === 4),
+            2,
+            "lower",
+            4
+        ),
+
+        r2: fillRoundSlots(
+            normalized.filter(m => m.round_number === 5),
+            2,
+            "lower",
+            5
+        ),
+
+        r3: fillRoundSlots(
+            normalized.filter(m => m.round_number === 6),
+            1,
+            "lower",
+            6
+        ),
+
+        final: fillRoundSlots(
+            normalized.filter(m => m.round_number === 7),
+            1,
+            "lower",
+            7
+        ),
+    };
+
+    // ---------- GRAND FINAL ----------
+
+    const grandFinal =
+        normalized.find(m => m.round_number === 8) ?? {
+            id: null,
+            side: "grand",
+            round_number: 8,
+            bracket_position: 1,
+            team_a_id: null,
+            team_b_id: null,
+            team_a_name: null,
+            team_b_name: null,
+            winner_id: null,
+            start_date: null,
+            team_a_result: 0,
+            team_b_result: 0,
+        };
+
+    return {
+        upper,
+        lower,
+        grandFinal,
+    };
 }

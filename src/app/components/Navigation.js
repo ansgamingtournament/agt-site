@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import styles from '@/app/styles/Navigation.module.css';
 import { useAdmin } from "@/app/context/AdminContext";
+import { FaDiscord, FaTwitch } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -28,12 +29,15 @@ export default function Navigation() {
 
                 {/* Desktop links */}
                 <div className={styles.links}>
-                    <NavLink href="/" closeMenu={closeMenu}>Home</NavLink>
-                    <NavLink href="/tournaments" closeMenu={closeMenu}>Tournaments</NavLink>
+                    <NavLink href="/tournaments" closeMenu={closeMenu}>Turnieje</NavLink>
                     {isAdmin && (
                         <NavLink href="/admin" closeMenu={closeMenu}>Admin</NavLink>
                     )}
+
+                    <DiscordButton />
+                    <TwitchButton />
                 </div>
+
 
                 {/* Hamburger */}
                 <button
@@ -48,14 +52,44 @@ export default function Navigation() {
             </div>
             {menuOpen && (
                 <div className={`${styles.mobileMenu} ${menuOpen ? styles.open : ''}`}>
-                    <NavLink href="/" closeMenu={closeMenu}>Home</NavLink>
-                    <NavLink href="/tournaments" closeMenu={closeMenu}>Tournaments</NavLink>
+                    <NavLink href="/tournaments" closeMenu={closeMenu}>Turnieje</NavLink>
                     {isAdmin && (
                         <NavLink href="/admin" closeMenu={closeMenu}>Admin</NavLink>
                     )}
+                    <DiscordButton mobile />
+                    <TwitchButton mobile />
                 </div>
             )}
         </nav>
+    );
+}
+
+function TwitchButton({ mobile }) {
+    return (
+        <a
+            href="https://www.twitch.tv/agt_ans"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.twitchBtn} ${mobile ? styles.mobileTwitch : ""}`}
+        >
+            <FaTwitch size={mobile ? 22 : 18} />
+            {mobile && <span>Twitch</span>}
+        </a>
+    );
+}
+
+
+function DiscordButton({ mobile }) {
+    return (
+        <a
+            href="https://discord.com/invite/yGPM6vFr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.discordBtn} ${mobile ? styles.mobileDiscord : ""}`}
+        >
+            <FaDiscord size={mobile ? 22 : 18} />
+            {mobile && <span>Discord</span>}
+        </a>
     );
 }
 

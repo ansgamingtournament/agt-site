@@ -14,7 +14,8 @@ export default function TournamentsAdmin() {
     const [addForm, setAddForm] = useState({
         game_id: '',
         start_date: '',
-        end_date: ''
+        end_date: '',
+        form_url: ''
     });
 
     const [editId, setEditId] = useState(null);
@@ -35,7 +36,7 @@ export default function TournamentsAdmin() {
             body: JSON.stringify(addForm)
         });
 
-        setAddForm({ game_id: '', start_date: '', end_date: '' });
+        setAddForm({ game_id: '', start_date: '', end_date: '', form_url: '' });
         load();
     }
 
@@ -115,6 +116,7 @@ export default function TournamentsAdmin() {
                     <th>Game</th>
                     <th>Start</th>
                     <th>End</th>
+                    <th>Registration Form</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -185,7 +187,21 @@ export default function TournamentsAdmin() {
                                     toInputDateTime(t.end_date)
                                 )}
                             </td>
-
+                            <td>
+                                {isEditing ? (
+                                    <input
+                                        value={editForm.form_url}
+                                        onChange={e =>
+                                            setEditForm({
+                                                ...editForm,
+                                                form_url: e.target.value
+                                            })
+                                        }
+                                    />
+                                ) : (
+                                    t.form_url
+                                )}
+                            </td>
                             {/* ACTIONS */}
                             <td>
                                 <span className={styles["admin-actions"]}>
@@ -214,7 +230,8 @@ export default function TournamentsAdmin() {
                                                     setEditForm({
                                                         game_id: t.game_id,
                                                         start_date: toInputDateTime(t.start_date),
-                                                        end_date: toInputDateTime(t.end_date)
+                                                        end_date: toInputDateTime(t.end_date),
+                                                        form_url: t.form_url,
                                                     });
                                                 }}
                                             >

@@ -50,10 +50,16 @@
 
 .team {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 10px;
     padding: 6px 4px;
+}
+
+.teamResult {
+    font-weight: bold;
+    min-width: 24px;
+    text-align: right;
 }
 
 .team img {
@@ -111,14 +117,14 @@
 
 /* Quarterfinals: merge 2 → 1 */
 .round8 {
-    row-gap: 160px;
+    row-gap: 144px;
     padding-top: 76px;
 
 }
 
 /* Semifinals (Round of 4): merge 2 → 1 again */
 .round4 {
-    row-gap: 450px;
+    row-gap: 400px;
     padding-top: 224px;
 }
 
@@ -166,14 +172,14 @@
     cursor: pointer;
     background: #0b0b0b;
     border: 2px dashed #4ade80;
-    min-height: 132.5px;
+    min-height: 112.5px;
 }
 
 .addMatchCard {
     position: relative;
     cursor: pointer;
     background: #0b0b0b;
-    min-height: 132.5px;
+    min-height: 112.5px;
 }
 
 .addMatchOverlay {
@@ -219,7 +225,7 @@
     right: -16px;
     top: 50%;
     width: 2px;
-    height: 150px;
+    height: 128.5px;
     background: rgba(255, 255, 255, 0.6);
 }
 
@@ -240,11 +246,11 @@
 }
 
 .round8 .matchWrapper::before {
-    height: 293px;
+    height: 256.5px;
 }
 
 .round4 .matchWrapper::before {
-    height: 582px;
+    height: 512.5px;
 }
 
 .round8 .matchWrapper:nth-child(odd) .match::after {

@@ -26,12 +26,24 @@ export default function MatchCard({ match, onClick }) {
                     <TeamRow
                         team={match.team_a_name}
                         img={match.team_a_image}
-                        winner={match.winner_id === match.team_a_id}
+                        winner={
+                            match.winner_id === null
+                                ? null
+                                : match.winner_id === match.team_a_id
+                        }
+
+                        result={match.team_a_result}
                     />
                     <TeamRow
                         team={match.team_b_name}
                         img={match.team_b_image}
-                        winner={match.winner_id === match.team_b_id}
+                        winner={
+                            match.winner_id === null
+                                ? null
+                                : match.winner_id === match.team_b_id
+                        }
+
+                        result={match.team_b_result}
                     />
 
                     <div className={styles.matchDate}>
@@ -42,7 +54,6 @@ export default function MatchCard({ match, onClick }) {
         </div>
     );
 }
-
 
 function formatDate(dateString) {
     if (!dateString) return '';
@@ -59,12 +70,23 @@ function formatDate(dateString) {
     return `${day}-${month}-${year} ${hours}:${minutes}`;
 }
 
-function TeamRow({ team, img, winner }) {
+function TeamRow({ team, img, winner, result }) {
     return (
-        <div className={`${styles.team} ${winner ? styles.winner : ''}`}>
-            {img ? <img src={img} alt={team} /> : <img src={"/logo.png"} alt={"default"} />}
-            <span>{team ?? 'TBD'}</span>
-            <span>{winner ? winner : ''}</span>
+        <div
+            className={[
+                styles.team,
+                winner === true && styles.winner
+            ].filter(Boolean).join(' ')}
+        >
+            <img src={img || "/logo.png"} alt={team || "default"} />
+
+            <span className={styles.teamName}>
+                {team ?? 'TBD'}
+            </span>
+
+            <span className={styles.teamResult}>
+                {result ?? '0'}
+            </span>
         </div>
     );
 }
