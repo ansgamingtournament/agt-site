@@ -25,20 +25,22 @@ export async function POST(req) {
         start_date,
         end_date,
         game_id,
-        winner_team_id
+        winner_team_id,
+        form_url
     } = await req.json();
 
     const [result] = await pool.query(
         `
         INSERT INTO Tournament
-        (start_date, end_date, game_id, winner_team_id)
-        VALUES (?, ?, ?, ?)
+        (start_date, end_date, game_id, winner_team_id, form_url)
+        VALUES (?, ?, ?, ?, ?)
         `,
         [
             start_date || null,
             end_date || null,
             game_id,
-            winner_team_id || null
+            winner_team_id || null,
+            form_url || null
         ]
     );
 
@@ -55,7 +57,8 @@ export async function PUT(req) {
         start_date,
         end_date,
         game_id,
-        winner_team_id
+        winner_team_id,
+        form_url
     } = await req.json();
 
     await pool.query(
@@ -65,7 +68,8 @@ export async function PUT(req) {
             start_date = ?,
             end_date = ?,
             game_id = ?,
-            winner_team_id = ?
+            winner_team_id = ?,
+            form_url = ?
         WHERE id = ?
         `,
         [
@@ -73,6 +77,7 @@ export async function PUT(req) {
             end_date || null,
             game_id,
             winner_team_id || null,
+            form_url || null,
             id
         ]
     );

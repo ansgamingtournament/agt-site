@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-    title: "ANS Gaming Tournament - Competitive Gaming Platform",
-    description: "Join and compete in exciting esports tournaments",
+    title: "ANS Gaming Tournament - Turnieje esportowe",
+    description: "Zapisz się do turniejów esportowych na naszej uczelni",
 };
 
 export default function RootLayout({ children }) {

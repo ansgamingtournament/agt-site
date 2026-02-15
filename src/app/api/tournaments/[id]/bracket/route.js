@@ -10,6 +10,8 @@ export async function GET(req, context) {
                 m.round_number,
                 m.bracket_position,
                 m.start_date,
+                m.team_a_result,
+                m.team_b_result,
 
                 ta.id AS team_a_id,
                 ta.name AS team_a_name,

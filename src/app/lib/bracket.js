@@ -45,6 +45,8 @@ export function groupMatches(matches) {
             team_b_name: null,
             winner_id: null,
             start_date: null,
+            team_a_result: 0,
+            team_b_result: 0,
         }
     };
 }
@@ -70,9 +72,83 @@ function fillRoundSlots(existing, totalSlots, side, round_number) {
                 team_b_name: null,
                 winner_id: null,
                 start_date: null,
+                team_a_result: 0,
+                team_b_result: 0,
             });
         }
     }
 
     return slots;
+}
+
+export function groupDoubleEliminationMatches(matches) {
+
+    const upper = {
+        r1: fillRoundSlots(
+            matches.filter(m => m.bracket === 'upper' && m.round_number === 1),
+            4,
+            'upper',
+            1
+        ),
+        r2: fillRoundSlots(
+            matches.filter(m => m.bracket === 'upper' && m.round_number === 2),
+            2,
+            'upper',
+            2
+        ),
+        final: fillRoundSlots(
+            matches.filter(m => m.bracket === 'upper' && m.round_number === 3),
+            1,
+            'upper',
+            3
+        ),
+    };
+
+    const lower = {
+        r1: fillRoundSlots(
+            matches.filter(m => m.bracket === 'lower' && m.round_number === 1),
+            2,
+            'lower',
+            1
+        ),
+        r2: fillRoundSlots(
+            matches.filter(m => m.bracket === 'lower' && m.round_number === 2),
+            2,
+            'lower',
+            2
+        ),
+        r3: fillRoundSlots(
+            matches.filter(m => m.bracket === 'lower' && m.round_number === 3),
+            1,
+            'lower',
+            3
+        ),
+        final: fillRoundSlots(
+            matches.filter(m => m.bracket === 'lower' && m.round_number === 4),
+            1,
+            'lower',
+            4
+        ),
+    };
+
+    const grandFinal = matches.find(m => m.bracket === 'grand');
+
+    return {
+        upper,
+        lower,
+        grandFinal: grandFinal ?? {
+            id: null,
+            bracket: 'grand',
+            round_number: 1,
+            bracket_position: 1,
+            team_a_id: null,
+            team_b_id: null,
+            team_a_name: null,
+            team_b_name: null,
+            winner_id: null,
+            start_date: null,
+            team_a_result: 0,
+            team_b_result: 0,
+        }
+    };
 }

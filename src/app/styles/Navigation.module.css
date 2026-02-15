@@ -153,6 +153,41 @@
     }
 }
 
+/* ========================= */
+/* DISCORD BUTTON */
+/* ========================= */
+
+.discordBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    background: rgba(88, 101, 242, 0.15);
+    border: 1px solid rgba(88, 101, 242, 0.3);
+
+    color: #c7d2fe;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.discordBtn:hover {
+    background: rgba(88, 101, 242, 0.3);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* mobile variant */
+
+.mobileDiscord {
+    font-size: 18px;
+    padding: 10px;
+}
+
+
 @media (min-width: 769px) {
     .mobileMenu {
         display: none;

@@ -1,0 +1,232 @@
+/* ================= ROOT ================= */
+
+.bracketScroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* ================= GRID ================= */
+
+.bracketGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 260px);
+    gap: 120px 60px;
+    padding: 60px;
+    min-width: 1600px;
+}
+
+/* ================= COLUMNS ================= */
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ================= UPPER ================= */
+
+.ub
+{
+    grid-row: 1;
+}
+.round2-upper
+{
+    margin-top: 70px;
+    gap: 162px;
+}
+.round3-upper
+{
+    margin-top: 214px;
+}
+
+/* ================= LOWER ================= */
+
+.lb
+{
+    grid-row: 2;
+    margin-top: 70px; /*70px*/
+}
+.round2-lower
+{
+   /*
+   bez margina
+   */
+}
+.round3-lower
+{
+    /*
+    bez margina
+    */
+}
+.round4-lower
+{
+    margin-top: -80px;
+}
+
+/* ================= GRAND FINAL ================= */
+
+.grandFinal {
+    grid-column: 5;
+    grid-row: 1 / span 2;
+    align-self: center;
+}
+
+/* ================= MATCH ================= */
+
+.matchWrapper {
+    position: relative;
+}
+
+/* ================================================= */
+/* CARD → RIGHT (EVERY MATCH) */
+/* ================================================= */
+
+.matchWrapper > div::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -40px;
+    width: 40px;
+    height: 2px;
+    background: white;
+}
+
+/* ================================================= */
+/* VERTICAL (ODD MATCHES) */
+/* ================================================= */
+
+.matchWrapper:nth-child(odd)::before {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    width: 2px;
+    background: white;
+}
+
+/* ================================================= */
+/* CENTER HORIZONTAL (FROM VERTICAL) */
+/* ================================================= */
+
+.matchWrapper:nth-child(odd)::after {
+    content: '';
+    position: absolute;
+    right: -78px;
+    width: 40px;
+    height: 2px;
+    background: white;
+}
+
+/* ================= UPPER ROUND 1 ================= */
+
+.ub .matchWrapper:nth-child(odd)::before {
+    height: 138px;
+}
+
+.ub .matchWrapper:nth-child(odd)::after {
+    top: calc(50% + 68px);
+}
+
+/* ================= UPPER ROUND 2 ================= */
+
+.round2-upper .matchWrapper:nth-child(odd)::before {
+    height: 276px;
+}
+
+.round2-upper .matchWrapper:nth-child(odd)::after {
+    top: calc(50% + 142px);
+}
+
+/* ================= UPPER ROUND 3 ================= */
+
+.round3-upper .matchWrapper:nth-child(odd)::before {
+    height: 80px;
+}
+
+.round3-upper .matchWrapper:nth-child(odd)::after {
+    top: calc(50% + 80px);
+    width: 322px;
+    right: -360px;
+}
+
+/* ================= LOWER ROUND 1 ================= */
+
+.lb .matchWrapper > div::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -70px;
+    width: 70px;
+    height: 2px;
+    background: white;
+}
+
+.lb .matchWrapper:nth-child(even)::before {
+    display: none;
+}
+
+.lb .matchWrapper:nth-child(odd)::after {
+    display: none;
+}
+
+/* ================= LOWER ROUND 2 ================= */
+
+.round2-lower .matchWrapper:nth-child(odd)::before {
+    height: 138px;
+}
+
+.round2-lower .matchWrapper:nth-child(odd)::after {
+    display: none;
+}
+
+.round2-lower .matchWrapper:nth-child(even) > div::after {
+    right: -42px;
+    width: 42px;
+}
+
+/* ================= LOWER ROUND 3 ================= */
+
+.round3-lower .matchWrapper:nth-child(odd)::before {
+    height: 155px;
+    top: -96px;
+}
+
+.round3-lower .matchWrapper:nth-child(odd)::after {
+    display: grid;
+    top: -96px
+}
+
+.round3-lower .matchWrapper > div::after {
+    right: -42px;
+    width: 42px;
+}
+
+/* ================= LOWER ROUND 4 ================= */
+
+.round4-lower .matchWrapper:nth-child(odd)::before {
+    top: -210px;
+    height: 268px;
+}
+
+.round4-lower .matchWrapper:nth-child(even) > div::after {
+    right: -72px;
+    width: 42px;
+}
+
+.round4-lower .matchWrapper:nth-child(1)::after {
+    top: -84px;
+    display: grid;
+}
+
+.round4-lower .matchWrapper > div::after {
+    right: -42px;
+    width: 42px;
+}
+
+
+/* ================= GRAND FINAL ================= */
+
+.grandFinal .matchWrapper::after,
+.grandFinal .matchWrapper > div::after {
+    display: none;
+}

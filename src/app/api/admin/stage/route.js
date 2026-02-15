@@ -87,7 +87,37 @@ export async function DELETE(req) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
 
-    await pool.query(`DELETE FROM Stage WHERE id = ?`, [id]);
+    const conn = await pool.getConnection();
 
-    return NextResponse.json({ ok: true });
+    try {
+        await conn.beginTransaction();
+
+        // ✅ delete all matchgames belonging to this stage
+        await conn.query(
+            `DELETE FROM matchgame WHERE stage_id = ?`,
+            [id]
+        );
+
+        // ✅ now delete the stage
+        await conn.query(
+            `DELETE FROM Stage WHERE id = ?`,
+            [id]
+        );
+
+        await conn.commit();
+
+        return NextResponse.json({ ok: true });
+
+    } catch (err) {
+        await conn.rollback();
+        console.error(err);
+
+        return NextResponse.json(
+            { error: 'Delete failed' },
+            { status: 500 }
+        );
+
+    } finally {
+        conn.release();
+    }
 }

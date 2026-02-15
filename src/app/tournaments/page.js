@@ -3,12 +3,7 @@
 import { useEffect, useState } from 'react';
 import styles from '@/app/styles/TournamentList.module.css';
 import TournamentCard from '@/app/components/TournamentCard';
-
-const TABS = [
-    { key: 'CURRENT', label: 'Live' },
-    { key: 'FUTURE', label: 'Upcoming' },
-    { key: 'OVER', label: 'Finished' },
-];
+import { TOURNAMENT_STATUS } from "@/app/constants/TournamentStatus";
 
 export default function TournamentsPage() {
     const [tournaments, setTournaments] = useState([]);
@@ -27,10 +22,9 @@ export default function TournamentsPage() {
             {/* HERO */}
             <section className={styles.hero}>
                 <div className={styles.heroContent}>
-                    <h1>Tournaments</h1>
+                    <h1>Sekcja Turniejów</h1>
                     <p>
-                        Explore live competitions, upcoming events, and completed tournaments
-                        across multiple games.
+                        Dołącz do uczelnianych turniejów - sprawdź trwające rozgrywki, zaplanowane wydarzenia i archiwalne wyniki.
                     </p>
                 </div>
             </section>
@@ -39,23 +33,24 @@ export default function TournamentsPage() {
             <div className={styles.page}>
                 {/* TABS */}
                 <div className={styles.tabs}>
-                    {TABS.map(tab => (
+                    {Object.entries(TOURNAMENT_STATUS).map(([key, status]) => (
                         <button
-                            key={tab.key}
-                            onClick={() => setActiveTab(tab.key)}
+                            key={key}
+                            onClick={() => setActiveTab(key)}
                             className={`${styles.tab} ${
-                                activeTab === tab.key ? styles.active : ''
+                                activeTab === key ? styles.active : ''
                             }`}
                         >
-                            {tab.label}
+                            {status.label}
                         </button>
                     ))}
+
                 </div>
 
                 {/* GRID */}
                 <div className={styles.grid}>
                     {filtered.length === 0 && (
-                        <p className={styles.empty}>No tournaments found.</p>
+                        <p className={styles.empty}>Brak turniejów w danej kategorii.</p>
                     )}
 
                     {filtered.map(t => (

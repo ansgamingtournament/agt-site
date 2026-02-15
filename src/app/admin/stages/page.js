@@ -107,6 +107,7 @@ export default function StagesAdmin() {
                         <option value="GROUP">GROUP</option>
                         <option value="BRACKET">BRACKET</option>
                         <option value="SWISS">SWISS</option>
+                        <option value="DOUBLE">Double</option>
                     </select>
                 </div>
 
@@ -208,6 +209,7 @@ export default function StagesAdmin() {
                                         <option value="GROUP">GROUP</option>
                                         <option value="BRACKET">BRACKET</option>
                                         <option value="SWISS">SWISS</option>
+                                        <option value="DOUBLE">Double</option>
                                     </select>
                                 ) : (
                                     s.stage_type

@@ -42,31 +42,30 @@ export default function Home() {
                     <p>Turnieje akademickie znajdziesz tutaj</p>
 
                     <Link href="/tournaments" className={styles.cta}>
-                        Browse Tournaments
+                        Wyszukaj Turnieje
                     </Link>
                 </div>
             </section>
 
-
             {/* STATS */}
             <section className={styles.stats}>
-                <Stat label="Ongoing" value={current.length} />
-                <Stat label="Upcoming" value={future.length} />
-                <Stat label="Finished" value={over.length} />
+                <Stat label="W trakcie" value={current.length} />
+                <Stat label="Nadchodzące" value={future.length} />
+                <Stat label="Zakończone" value={over.length} />
             </section>
 
             {/* FEATURED */}
             {featured && (
                 <section className={styles.featured}>
-                    <h2>Featured Tournament</h2>
+                    <h2>Wyróżniony Turniej</h2>
                     <TournamentCard tournament={featured} />
                 </section>
             )}
 
             {/* SECTIONS */}
-            <TournamentSection title="Live Now" data={current.slice(0, 4)} />
-            <TournamentSection title="Coming Soon" data={future.slice(0, 4)} />
-            <TournamentSection title="Recently Finished" data={over.slice(0, 4)} />
+            <TournamentSection title="W trakcie" data={current.slice(0, 4)} />
+            <TournamentSection title="Nadchodzące" data={future.slice(0, 4)} />
+            <TournamentSection title="Zakończone" data={over.slice(0, 4)} />
         </div>
     );
 }
@@ -76,12 +75,12 @@ function TournamentSection({ title, data }) {
         <section className={styles.section}>
             <div className={styles.sectionHeader}>
                 <h2>{title}</h2>
-                <Link href="/tournaments">View all</Link>
+                <Link href="/tournaments">Wszystkie turnieje</Link>
             </div>
 
             <div className={styles.grid}>
                 {data.length === 0 && (
-                    <p className={styles.empty}>No tournaments here yet.</p>
+                    <p className={styles.empty}>Brak turniejów.</p>
                 )}
                 {data.map(t => (
                     <TournamentCard key={t.id} tournament={t} />
