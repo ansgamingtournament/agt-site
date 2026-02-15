@@ -194,3 +194,38 @@
     }
 }
 
+/* ========================= */
+/* TWITCH BUTTON */
+/* ========================= */
+
+.twitchBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    background: rgba(145, 70, 255, 0.15);
+    border: 1px solid rgba(145, 70, 255, 0.3);
+
+    color: #e9d5ff;
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.twitchBtn:hover {
+    background: rgba(145, 70, 255, 0.3);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* mobile variant */
+
+.mobileTwitch {
+    font-size: 18px;
+    padding: 10px;
+}
+
+

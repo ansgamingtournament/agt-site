@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styles from '@/app/styles/Navigation.module.css';
 import { useAdmin } from "@/app/context/AdminContext";
-import { FaDiscord } from "react-icons/fa";
+import { FaDiscord, FaTwitch } from "react-icons/fa";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -35,6 +35,7 @@ export default function Navigation() {
                     )}
 
                     <DiscordButton />
+                    <TwitchButton />
                 </div>
 
 
@@ -56,11 +57,27 @@ export default function Navigation() {
                         <NavLink href="/admin" closeMenu={closeMenu}>Admin</NavLink>
                     )}
                     <DiscordButton mobile />
+                    <TwitchButton mobile />
                 </div>
             )}
         </nav>
     );
 }
+
+function TwitchButton({ mobile }) {
+    return (
+        <a
+            href="https://www.twitch.tv/agt_ans"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.twitchBtn} ${mobile ? styles.mobileTwitch : ""}`}
+        >
+            <FaTwitch size={mobile ? 22 : 18} />
+            {mobile && <span>Twitch</span>}
+        </a>
+    );
+}
+
 
 function DiscordButton({ mobile }) {
     return (

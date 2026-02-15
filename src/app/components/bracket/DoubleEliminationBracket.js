@@ -5,7 +5,6 @@ import { groupDoubleEliminationMatches } from "@/app/lib/bracket";
 import styles from "@/app/styles/DoubleElim.module.css";
 
 export default function DoubleEliminationBracket({ tournamentID, matches, teams }) {
-
     const b = groupDoubleEliminationMatches(matches);
     const [activeMatch, setActiveMatch] = useState(null);
 

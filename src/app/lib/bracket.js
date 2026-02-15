@@ -83,63 +83,77 @@ function fillRoundSlots(existing, totalSlots, side, round_number) {
 
 export function groupDoubleEliminationMatches(matches) {
 
+    // normalize numeric fields (important if backend sends strings)
+    const normalized = matches.map(m => ({
+        ...m,
+        round_number: Number(m.round_number),
+        bracket_position: Number(m.bracket_position),
+    }));
+
+    // ---------- UPPER BRACKET ----------
+
     const upper = {
         r1: fillRoundSlots(
-            matches.filter(m => m.bracket === 'upper' && m.round_number === 1),
+            normalized.filter(m => m.round_number === 1),
             4,
-            'upper',
+            "upper",
             1
         ),
+
         r2: fillRoundSlots(
-            matches.filter(m => m.bracket === 'upper' && m.round_number === 2),
+            normalized.filter(m => m.round_number === 2),
             2,
-            'upper',
+            "upper",
             2
         ),
+
         final: fillRoundSlots(
-            matches.filter(m => m.bracket === 'upper' && m.round_number === 3),
+            normalized.filter(m => m.round_number === 3),
             1,
-            'upper',
+            "upper",
             3
         ),
     };
+
+    // ---------- LOWER BRACKET ----------
 
     const lower = {
         r1: fillRoundSlots(
-            matches.filter(m => m.bracket === 'lower' && m.round_number === 1),
+            normalized.filter(m => m.round_number === 4),
             2,
-            'lower',
-            1
-        ),
-        r2: fillRoundSlots(
-            matches.filter(m => m.bracket === 'lower' && m.round_number === 2),
-            2,
-            'lower',
-            2
-        ),
-        r3: fillRoundSlots(
-            matches.filter(m => m.bracket === 'lower' && m.round_number === 3),
-            1,
-            'lower',
-            3
-        ),
-        final: fillRoundSlots(
-            matches.filter(m => m.bracket === 'lower' && m.round_number === 4),
-            1,
-            'lower',
+            "lower",
             4
+        ),
+
+        r2: fillRoundSlots(
+            normalized.filter(m => m.round_number === 5),
+            2,
+            "lower",
+            5
+        ),
+
+        r3: fillRoundSlots(
+            normalized.filter(m => m.round_number === 6),
+            1,
+            "lower",
+            6
+        ),
+
+        final: fillRoundSlots(
+            normalized.filter(m => m.round_number === 7),
+            1,
+            "lower",
+            7
         ),
     };
 
-    const grandFinal = matches.find(m => m.bracket === 'grand');
+    // ---------- GRAND FINAL ----------
 
-    return {
-        upper,
-        lower,
-        grandFinal: grandFinal ?? {
+    const grandFinal =
+        normalized.find(m => m.round_number === 8) ?? {
             id: null,
-            bracket: 'grand',
-            round_number: 1,
+            side: "grand",
+            round_number: 8,
             bracket_position: 1,
             team_a_id: null,
             team_b_id: null,
@@ -149,6 +163,11 @@ export function groupDoubleEliminationMatches(matches) {
             start_date: null,
             team_a_result: 0,
             team_b_result: 0,
-        }
+        };
+
+    return {
+        upper,
+        lower,
+        grandFinal,
     };
 }

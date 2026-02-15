@@ -54,6 +54,19 @@ export default function Home() {
                 <Stat label="Zakończone" value={over.length} />
             </section>
 
+            {/* TWITCH STREAM */}
+            <section className={styles.stream}>
+                <div className={styles.streamWrapper}>
+                    <iframe
+                        src="https://player.twitch.tv/?channel=agt_ans&parent=localhost&parent=agt-site.vercel.app"
+                        height="100%"
+                        width="100%"
+                        allowFullScreen
+                    />
+                </div>
+            </section>
+
+
             {/* FEATURED */}
             {featured && (
                 <section className={styles.featured}>
