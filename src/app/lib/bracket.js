@@ -47,6 +47,8 @@ export function groupMatches(matches) {
             start_date: null,
             team_a_result: 0,
             team_b_result: 0,
+            team_a_image: null,
+            team_b_image: null
         }
     };
 }
@@ -69,7 +71,9 @@ function fillRoundSlots(existing, totalSlots, side, round_number) {
                 team_a_id: null,
                 team_b_id: null,
                 team_a_name: null,
+                team_a_image: null,
                 team_b_name: null,
+                team_b_image: null,
                 winner_id: null,
                 start_date: null,
                 team_a_result: 0,
@@ -163,6 +167,8 @@ export function groupDoubleEliminationMatches(matches) {
             start_date: null,
             team_a_result: 0,
             team_b_result: 0,
+            team_a_image: null,
+            team_b_image: null,
         };
 
     return {

@@ -9,9 +9,11 @@ export async function GET(req, context) {
 
             ta.id   AS team_a_id,
             ta.name AS team_a_name,
+            ta.image_url AS team_a_image,
 
             tb.id   AS team_b_id,
             tb.name AS team_b_name,
+            tb.image_url AS team_b_image,
 
             tw.id   AS winner_id,
             tw.name AS winner_name

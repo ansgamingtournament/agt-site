@@ -65,6 +65,12 @@
 .team img {
     width: 24px;
     height: 24px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .winner {
