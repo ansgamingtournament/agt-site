@@ -11,6 +11,7 @@ export async function GET() {
                 g.image_url AS game_image,
                 w.name AS winner_name,
                 t.form_url,
+                t.rules_url,
                 CASE
                     WHEN NOW() > t.end_date THEN 'OVER'
                     WHEN NOW() BETWEEN t.start_date AND t.end_date THEN 'CURRENT'

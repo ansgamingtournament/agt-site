@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import RegistrationModal from "@/app/components/registration/RegistrationModal";
 import { TOURNAMENT_STATUS } from "@/app/constants/TournamentStatus";
+import { FaBook } from "react-icons/fa";
+
 
 export default function TournamentCard({ tournament }) {
     const [open, setOpen] = useState(false);
@@ -29,6 +31,23 @@ export default function TournamentCard({ tournament }) {
                     className={styles.image}
                     unoptimized
                 />
+
+                {tournament.rules_url && (
+                    <button
+                        className={styles.rulesBtn}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            window.open(
+                                tournament.rules_url,
+                                "_blank",
+                                "noopener,noreferrer"
+                            );
+                        }}
+                    >
+                        <FaBook />
+                    </button>
+                )}
             </div>
 
             <div className={styles.content}>
