@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 import DoubleEliminationBracket from "@/app/components/bracket/DoubleEliminationBracket";
 
 export default function TournamentPage() {
-    const { id } = useParams();
+    const { slug } = useParams();
 
     const [teams, setTeams] = useState([]);
     const [stages, setStages] = useState([]);
@@ -23,13 +23,13 @@ export default function TournamentPage() {
 
     // fetch stages
     useEffect(() => {
-        fetch(`/api/tournaments/${id}/stages`)
+        fetch(`/api/tournaments/${slug}/stages`)
             .then(res => res.json())
             .then(data => {
                 setStages(data);
                 if (data.length) setActiveStage(data[0]);
             });
-    }, [id]);
+    }, [slug]);
 
     // fetch matches when stage changes
     useEffect(() => {

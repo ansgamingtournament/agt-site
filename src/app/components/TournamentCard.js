@@ -98,7 +98,7 @@ export default function TournamentCard({ tournament }) {
                 CardContent
             ) : (
                 <Link
-                    href={`/tournaments/${tournament.id}`}
+                    href={`/tournaments/${tournament.slug}`}
                     className={styles.cardLink}
                 >
                     {CardContent}
