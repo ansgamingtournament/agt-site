@@ -1,6 +1,7 @@
 import pool from '@/app/lib/db';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { slugify } from '@/app/lib/slugify';
 
 async function requireAdmin() {
     const role = (await cookies()).get('role')?.value;
@@ -29,20 +30,36 @@ export async function POST(req) {
         form_url
     } = await req.json();
 
-    const [result] = await pool.query(
-        `
-        INSERT INTO Tournament
-        (start_date, end_date, game_id, winner_team_id, form_url)
-        VALUES (?, ?, ?, ?, ?)
-        `,
-        [
-            start_date || null,
-            end_date || null,
-            game_id,
-            winner_team_id || null,
-            form_url || null
-        ]
+    const [[game]] = await pool.query(
+        `SELECT name FROM Game WHERE id = ?`,
+        [game_id]
     );
+
+    if (!game) {
+        return NextResponse.json(
+            { error: 'Game not found' },
+            { status: 400 }
+        );
+    }
+
+    const datePart = start_date
+        ? new Date(start_date).toISOString().slice(0, 10)
+        : '';
+
+    const slug = slugify(`${game.name}-${datePart}`);
+
+    const [result] = await pool.query(`
+        INSERT INTO Tournament
+            (start_date, end_date, game_id, winner_team_id, form_url, slug)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `, [
+        start_date || null,
+        end_date || null,
+        game_id,
+        winner_team_id || null,
+        form_url || null,
+        slug
+    ]);
 
     return NextResponse.json({ id: result.insertId });
 }
@@ -61,6 +78,24 @@ export async function PUT(req) {
         form_url
     } = await req.json();
 
+    const [[game]] = await pool.query(
+        `SELECT name FROM Game WHERE id = ?`,
+        [game_id]
+    );
+
+    if (!game) {
+        return NextResponse.json(
+            { error: 'Game not found' },
+            { status: 400 }
+        );
+    }
+
+    const datePart = start_date
+        ? new Date(start_date).toISOString().slice(0, 10)
+        : '';
+
+    const slug = slugify(`${game.name}-${datePart}`);
+
     await pool.query(
         `
         UPDATE Tournament
@@ -69,7 +104,8 @@ export async function PUT(req) {
             end_date = ?,
             game_id = ?,
             winner_team_id = ?,
-            form_url = ?
+            form_url = ?,
+            slug = ?
         WHERE id = ?
         `,
         [
@@ -78,6 +114,7 @@ export async function PUT(req) {
             game_id,
             winner_team_id || null,
             form_url || null,
+            slug,
             id
         ]
     );

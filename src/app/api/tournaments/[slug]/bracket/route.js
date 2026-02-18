@@ -1,9 +1,21 @@
 import pool from '@/app/lib/db';
 
 export async function GET(req, context) {
-    const { id } = await context.params;
+    const { slug } = await context.params;
 
     try {
+        const [[tournament]] = await pool.query(
+            `SELECT id FROM Tournament WHERE slug = ?`,
+            [slug]
+        );
+
+        if (!tournament) {
+            return Response.json(
+                { error: 'Tournament not found' },
+                { status: 404 }
+            );
+        }
+
         const [matches] = await pool.query(`
             SELECT
                 m.id,
@@ -25,15 +37,16 @@ export async function GET(req, context) {
                 w.name AS winner_name
 
             FROM MatchGame m
-                     JOIN Stage s ON s.id = m.stage_id
-                     LEFT JOIN Team ta ON ta.id = m.team_a_id
-                     LEFT JOIN Team tb ON tb.id = m.team_b_id
-                     LEFT JOIN Team w ON w.id = m.winner_id
+            JOIN Stage s ON s.id = m.stage_id
+            LEFT JOIN Team ta ON ta.id = m.team_a_id
+            LEFT JOIN Team tb ON tb.id = m.team_b_id
+            LEFT JOIN Team w ON w.id = m.winner_id
             WHERE s.tournament_id = ?
             ORDER BY m.round_number, m.bracket_position
-        `, [id]);
+        `, [tournament.id]);
 
         return Response.json(matches);
+
     } catch (err) {
         return Response.json({ error: err.message }, { status: 500 });
     }

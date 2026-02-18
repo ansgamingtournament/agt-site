@@ -15,6 +15,7 @@ export default function TournamentsAdmin() {
         game_id: '',
         start_date: '',
         end_date: '',
+        slug: '',
         form_url: ''
     });
 
@@ -36,7 +37,7 @@ export default function TournamentsAdmin() {
             body: JSON.stringify(addForm)
         });
 
-        setAddForm({ game_id: '', start_date: '', end_date: '', form_url: '' });
+        setAddForm({ game_id: '', start_date: '', end_date: '', slug: '', form_url: '' });
         load();
     }
 
@@ -100,7 +101,16 @@ export default function TournamentsAdmin() {
                         })
                     }
                 />
-
+                <label>Registration Form</label>
+                <input
+                    value={addForm.form_url}
+                    onChange={e =>
+                        setAddForm({
+                            ...addForm,
+                            form_url: e.target.value
+                        })
+                    }
+                />
                 <button
                     className={styles["btn-save"]}
                     onClick={addTournament}
@@ -117,6 +127,7 @@ export default function TournamentsAdmin() {
                     <th>Start</th>
                     <th>End</th>
                     <th>Registration Form</th>
+                    <th>Slug</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -148,7 +159,9 @@ export default function TournamentsAdmin() {
                                         ))}
                                     </select>
                                 ) : (
-                                    t.game_id
+                                    <div>
+                                        {games.find(g => g.id === t.game_id)?.name || "Unknown game"}
+                                    </div>
                                 )}
                             </td>
 
@@ -200,6 +213,22 @@ export default function TournamentsAdmin() {
                                     />
                                 ) : (
                                     t.form_url
+                                )}
+                            </td>
+
+                            <td>
+                                {isEditing ? (
+                                    <input
+                                        value={editForm.slug}
+                                        onChange={e =>
+                                            setEditForm({
+                                                ...editForm,
+                                                slug: e.target.value
+                                            })
+                                        }
+                                    />
+                                ) : (
+                                    t.slug
                                 )}
                             </td>
                             {/* ACTIONS */}
