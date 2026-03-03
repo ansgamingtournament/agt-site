@@ -16,7 +16,7 @@ export default function TournamentCard({ tournament }) {
         setOpen(true);
     };
 
-    const isLocked = tournament.status === "FUTURE";
+    const isLocked = tournament.status === "OVER";
 
     const statusConfig = TOURNAMENT_STATUS[tournament.status];
     const statusLabel = statusConfig?.label ?? tournament.status;
@@ -70,7 +70,6 @@ export default function TournamentCard({ tournament }) {
                 >
                     {statusLabel}
                 </span>
-
                     {isLocked && (
                         <button
                             className={styles.registerBtn}
