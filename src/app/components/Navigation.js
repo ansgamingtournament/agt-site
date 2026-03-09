@@ -82,7 +82,7 @@ function TwitchButton({ mobile }) {
 function DiscordButton({ mobile }) {
     return (
         <a
-            href="https://discord.com/invite/yGPM6vFr"
+            href="https://discord.com/invite/qJSCRph9ju"
             target="_blank"
             rel="noopener noreferrer"
             className={`${styles.discordBtn} ${mobile ? styles.mobileDiscord : ""}`}
